@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Formulário com validação Javascript</title>
+	<script type="text/javascript">
+		
+		window.onload = function(){
+		// Variáveis
+		var nome = document.getElementById("nome");
+		var telefone = document.getElementById("telefone");
+		var email = document.getElementById("email");
+		var btnEnviar = document.getElementById("btnEnviar");
+
+			btnEnviar.onclick = function(){
+				nomeVal = nome.value;
+				telefoneVal = telefone.value;
+				emailVal = email.value;
+
+				if(nomeVal == ""){
+					alert("Insira um nome!");
+					nome.focus();
+					return false;
+				}
+				if(telefoneVal == ""){
+					alert("Insira um telefone!");
+				}
+				if(emailVal == ""){
+					alert("Insira um e-mail!");
+
+				}
+			}
+		}
+	</script>
+
+</head>
+<body>
+	<label>Nome: </label>
+	<input type="text" id="nome" name="nome">
+	<label>Telefone: </label>
+	<input type="text" id="telefone" name="telefone">
+	<label>E-mail </label>
+	<input type="email" id="email" name="email">
+	<input type="button" id="btnEnviar" value="Cadastrar">
+
+</body>
+</html>
