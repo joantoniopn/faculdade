@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Exemplo 1 </title>
+    <style> *{font-family: sans-serif; font-size: 15px; }input{ margin: 5px; padding: 5px;}</style>
+<script type="text/javascript">
+    var paciente = new Array();
+    var peso = new Array();
+    var altura = new Array();
+    var imc = new Array();
+    
+    window.onload = function(){
+        
+        //Inputs
+        
+        nomePaciente = document.getElementById("nomePaciente");
+        pesoPaciente = document.getElementById("pesoPaciente");
+        alturaPaciente = document.getElementById("alturaPaciente");
+        
+        //Botões
+        btnAdicionar = document.getElementById("btnAdicionar");
+        btnMaiorImc = document.getElementById("btnMaiorImc");
+        
+        btnAdicionar.onclick = function(){
+            
+            valPaciente = nomePaciente.value;
+            if(valPaciente == ""){
+                alert("Insira o Nome do Paciente!");
+                nomePaciente.focus();
+                nomePaciente.style.backgroundColor = "red";
+                return false;
+            }else{
+            paciente.push(valPaciente);
+            }
+            
+            valPeso = pesoPaciente.value;
+            if(valPeso == ""){
+                alert("Digite um peso válido!");
+                pesoPaciente.focus();
+                pesoPaciente.style.backgroundColor = "red";
+
+            }else{
+            peso.push(valPeso);
+            }
+
+            valAlturaPaciente = alturaPaciente.value;
+            if(valAlturaPaciente == ""){
+                alert("Digite uma altura válida!");
+                alturaPaciente.style.backgroundColor = "red";
+            }else{
+            altura.push(valAlturaPaciente);
+            }      
+            valImc = parseFloat(valPeso)*(parseFloat(altura)*parseFloat(altura));
+            imc.push(valImc);
+            
+               
+            var TablePaciente = document.getElementById("TablePaciente")
+            var resultado = "";
+            for(ind=0; ind<paciente.length;ind++){
+                resultado += "<tr>";
+                resultado += "<td>" + paciente[ind] + "</td>";
+                resultado += "<td>" +peso[ind] +  "</td>";
+                resultado += "<td>" +altura[ind] +  "</td>";
+                resultado += "<td>" +imc[ind] +  "</td>";
+                resultado += "</tr>";
+            }
+            TablePaciente.innerHTML = resultado;
+        }
+        btnMaiorImc.onclick = function(){
+            
+            maior = 0;
+            for(ind=0; ind<imc.length; ind++){
+                if(imc[ind] > maior){
+                    maior = imc[ind];
+                    var indice = [ind];
+                }
+            }
+            alert("O Paciente com maior IMC é "+paciente[indice]+" com IMC de "+maior+".");
+        }
+        
+
+    }
+    
+</script>
+</head>
+<body>
+    Nome:<input type="text" id="nomePaciente" placeholder="Digite o nome do Paciente" /><br>
+    Peso:<input type="text" id="pesoPaciente" placeholder="Digite o peso do Paciente" />Kg<br>
+    Altura:<input type="text" id="alturaPaciente" placeholder="Digite a Altura do Paciente" />m<br>
+    
+    
+    
+    <input type="button" id="btnAdicionar" value="Adicionar" />
+    <input type="button" id="btnMaiorImc" value="Maior IMC" />
+    
+    
+    
+    <table>
+    <thead>
+    <tr>
+    <th>Nome</th>
+    <th>Peso</th>
+    <th>Altura</th>
+    <th>IMC</th>
+    </tr>
+    </thead>
+    <tbody id="TablePaciente"></tbody>
+    </table>
+</body>
+</html>
