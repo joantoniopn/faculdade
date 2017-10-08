@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Formulário com javascript</title>
+	<script type="text/javascript">
+		function validar(){
+			var nome = formusuario.nome.value;
+			var email = formusuario.email.value;
+			var senha = formusuario.senha.value;
+
+			if(nome == ""){
+				alert('Preencha o campo nome!');
+				formusuario.nome.focus();
+				return false;
+			}
+			if(email == "" || email.indexOf('@') == -1){
+				alert('Preencha o campo E-mail!');
+				formusuario.email.focus();
+				return false;
+			}
+			if(senha == ""){
+				alert('Preencha o campo Senha!');
+				formusuario.senha.focus();
+				return false;
+			}
+
+		}
+
+
+	</script>
+</head>
+<body>
+	<h1>Cadastro usuário</h1>
+	<form name="formusuario" method="POST">
+		Nome:<input type="text" name="nome"><br>
+		E-mail:<input type="text" name="email"><br>
+		Senha:<input type="password" name="senha"><br>
+		<input type="submit" value="Cadastrar" onclick="return validar()"><br>
+
+
+	</form>
+</body>
+</html>
