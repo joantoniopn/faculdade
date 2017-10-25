@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Exercicio - A</title>
+<script src="js/jquery.min.js"></script>
+<script>
+$(function(){
+
+	$("#calcular").click(function(){
+		$("input").css("background-color", "white");
+
+		var rgm = $("#inpRgm").val();
+		var nome = $("#nome").val();
+		var parcial = $("#pParcial").val();
+		var exercicios = $("#exercicios").val();
+		var regimental = $("#pRegimental").val();
+
+		if(rgm == ""){
+			$("#inpRgm").css("background-color","red");
+			alert("Digite o RGM");
+			return false;			
+		}else if(nome == ""){
+			$("#nome").css("background-color","red");
+			alert("Digite o Nome");
+			return false;	
+		}else if(parcial == ""){
+			$("#pParcial").css("background-color","red");
+			alert("Digite a Prova Parcial");
+			return false;	
+		}else if(exercicios == ""){
+			$("#exercicios").css("background-color","red");
+			alert("Digite os Exercícioss");
+			return false;	
+		}else if(regimental == ""){
+			$("#pRegimental").css("background-color","red");
+			alert("Digite a Prova Regimental");
+			return false;	
+		}
+		else{
+			return true;
+		}
+		
+
+	});
+
+});
+</script>
+<style type="text/css">
+*{margin: 5px; padding: 5px;} 
+label{width: 180px;float: left; display: inline-block;}
+input{width: 200px;float: left; display: block;} 
+.formulario{width: 600px;}
+button{padding: 10px; display:block; clear: both; margin-left: 20px;}
+</style>
+
+</head>
+<body>
+<h2>Cálculo de Média</h2>
+<div class="formulario">
+<label>RGM:</label> <input type="text" name="rgm" id="inpRgm"/>
+<label>Nome:</label> <input type="text" name="nome" id="nome"/>
+<label>Prova Parcial:</label> <input type="text" name="pParcial" id="pParcial"/>
+<label>Exercícios:</label> <input type="text" name="exercicios" id="exercicios"/>
+<label>Prova Regimental:</label> <input type="text" name="pRegimental" id="pRegimental"/>
+<button id="calcular">Calcular</button>
+</div>
+
+
+</body>
+
+</html>
