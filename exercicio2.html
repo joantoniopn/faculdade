@@ -1,0 +1,54 @@
+<?php
+$pessoas = array();
+
+array_push($pessoas, array(
+	'nome' => 'Joao',
+	'idade' => '24'
+
+));
+
+array_push($pessoas, array(
+	'nome' => 'Andre',
+	'idade' => '27'
+
+));
+json_encode($pessoas);
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Exercicio - A</title>
+<script src="js/jquery.min.js"></script>
+<script>
+$(function(){
+
+	var teste = <?php echo json_encode($pessoas)?>;
+	alert(teste[0]);
+
+});
+</script>
+<style type="text/css">
+*{margin: 5px; padding: 5px;} 
+label{width: 180px;float: left; display: inline-block;}
+input{width: 200px;float: left; display: block;} 
+.formulario{width: 600px;}
+button{padding: 10px; display:block; clear: both; margin-left: 20px;}
+</style>
+
+</head>
+<body>
+<h2>Cálculo de Média</h2>
+<div class="formulario">
+<label>RGM:</label> <input type="text" name="rgm" id="inpRgm"/>
+<label>Nome:</label> <input type="text" name="nome" id="nome"/>
+<label>Prova Parcial:</label> <input type="text" name="pParcial" id="pParcial"/>
+<label>Exercícios:</label> <input type="text" name="exercicios" id="exercicios"/>
+<label>Prova Regimental:</label> <input type="text" name="pRegimental" id="pRegimental"/>
+<button id="calcular">Calcular</button>
+</div>
+
+
+</body>
+
+</html>
