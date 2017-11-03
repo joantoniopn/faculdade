@@ -33,68 +33,77 @@ json_encode($pessoas_multi);
 <title>Exercicio - A</title>
 <script src="js/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@1.1.2"></script> 
 <script>
 $(function(){
 
 	var teste = <?php echo json_encode($pessoas)?>;
 	var teste2 = <?php echo json_encode($pessoas_multi, JSON_PRETTY_PRINT)?>;
 	$("#dados").html("Nome: "+teste2[0]["nome"]+" Idade: "+teste2[0]["idade"]);
+	
 	var ctx = document.getElementById('myChart').getContext('2d');
 	var chart = new Chart(ctx, {
-	// The type of chart we want to create
+	
+	//Tipo de Chart
 	type: 'bar',
 
-	// The data for our dataset
 	data: {
+		//Legenda
 	    labels: ["Agosto", "Setembro", "Outubro"],
-	    datasets: [{
+
+	    //Dados
+	    datasets: [
+	    {
 	        label: "RJ",
 	        backgroundColor: 'rgb(0, 102, 255)',
 	        borderColor: 'rgb(0, 102, 255)',
 	        data: [1, 10, 5],
 	    },
-	    {label: "SP",
-	    	        backgroundColor: 'rgb(247, 204, 118)',
-	    	        borderColor: 'rgb(247, 204, 118)',
-	    	        data: [6, 16, 12],},
-	   	{label: "RP",
-	    	        backgroundColor: 'rgb(126, 169, 173)',
-	    	        borderColor: 'rgb(126, 169, 173)',
-	    	        data: [2, 6, 10],}
+	    {
+			label: "SP",
+			backgroundColor: 'rgb(247, 204, 118)',
+			borderColor: 'rgb(247, 204, 118)',
+			data: [6, 16, 12],
+	   	},
+	   	{
+			label: "RP",
+			backgroundColor: 'rgb(126, 169, 173)',
+			borderColor: 'rgb(126, 169, 173)',
+			data: [2, 6, 10],}
 	    ]
 	},
 
-	// Configuration options go here
-	options: {
-		title: {
-		display: true,
-		text: 'Total Chamados POS'
+	// Configurações
+	options: 
+		{	
+			//Titulo do relatório
+			title: {
+			display: true,
+			text: 'Total Chamados POS'
 		}
 	}
 	});
 
 
 
-
-
-
-	var data = {
-	labels: ["Agosto", "Setembro", "Outubro"],
-	datasets: [{
-            label: "My First dataset",
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [1, 10, 5]
-        }]
+	var data = 	{
+		labels: ["Agosto", "Setembro", "Outubro"],
+		datasets: 
+		[{
+	        label: "My First dataset",
+	        backgroundColor: 'rgb(255, 99, 132)',
+	        borderColor: 'rgb(255, 99, 132)',
+	        data: [1, 10, 5]
+    	}]
 
 	};
 
 	var options = {
-	maintainAspectRatio: false,
-	scales: {
-	yAxes: [{
-	  stacked: true,
-	  gridLines: {
+		maintainAspectRatio: false,
+		scales: {
+		yAxes: [{
+	  	stacked: true,
+	  	gridLines: {
 	    display: true,
 	    color: "rgba(255,99,132,0.2)"
 	  }
@@ -108,12 +117,9 @@ $(function(){
 	};
 
 	Chart.Bar('chart', {
-	options: options,
-	data: data
-	});
-
-
-	
+		options: options,
+		data: data
+	});	
 });
 </script>
 <style type="text/css">
