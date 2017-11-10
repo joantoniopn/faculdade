@@ -3,10 +3,12 @@
 <meta charset="utf-8">
 <head>
     <title>Relatório de Chamados</title>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script src="js/Chart.bundle.js"></script>
     <script src="js/utils.js"></script>
     <style>
+
     canvas {
         float: left;
         display: block;
@@ -15,7 +17,7 @@
         -ms-user-select: none;
     }
     .Dash{
-        width: 900px;
+        width: 1080px;
         margin: 0 auto;
 
 
@@ -26,10 +28,21 @@
         float: left;
     }
     .teste2{
-    width: 60%;
+    width: 50%;
     margin-top: 10px;
     display: inline-block;
     float: left;
+    }
+    #totalChamadoss{
+    margin-left: 10px;
+    margin-top: 40px;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    color: #404040;
+    font-size: 21px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    line-height: 30px;
     }
 
     </style>
@@ -45,49 +58,78 @@
     <div class="teste2">
         <!-- Total de chamados POS -->
         <canvas id="totalChamados"></canvas>
+
     </div>
+        <div class="teste2">
+        <!-- Total de chamados POS -->
+        <div id="totalChamadoss">
+            <p>Total Chamados Pendentes: 20</p>
+            <p>Total Chamados Concluídos: 20</p>
+        </div>
+
+    </div>
+
     </div>  
 
     <script>
         var color = Chart.helpers.color;
         var barChartData = {
-            labels: ["Leitora NFC", "Leitora Interna", "Conexão", "Não Liga", "Alert Interruption", "Impressora", "Fonte AC"],
+            labels: [   "Leitora NFC", 
+                        "Leitora Interna", 
+                        "Conexão", 
+                        "Não Liga", 
+                        "Alert Interruption", 
+                        "Impressora", 
+                        "Fonte AC",
+                        "Atualização", 
+                        "Falha no Display",
+                        "Falha no Teclado"
+                    ],
             datasets: [{
                
                 label: 'RJ',
                 backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
                 borderColor: window.chartColors.red,
-                data: [12,20,56, 15, 5]
+                data: [44,'',28,'',5,3,3,10,'','']
             }, {
                 
                
                 label: 'SP',
                 backgroundColor: color(window.chartColors.green).alpha(0.2).rgbString(),
                 borderColor: window.chartColors.green,
-                data: [15,16,44,5, 4]
+                data: [44,'',28,'',5,3,3,10,'','']
+            },{
+                label: 'RP',
+                backgroundColor: color(window.chartColors.orange).alpha(0.2).rgbString(),
+                borderColor: window.chartColors.orange,
+                data: [44,'',28,'',5,3,3,10,'','']
             }]
         };
         // Define a plugin to provide data labels
         Chart.plugins.register({
             afterDatasetsDraw: function(chart, easing) {
+                
                 // To only draw at the end of animation, check for easing === 1
                 var ctx = chart.ctx;
                 chart.data.datasets.forEach(function (dataset, i) {
                     var meta = chart.getDatasetMeta(i);
                     if (!meta.hidden) {
                         meta.data.forEach(function(element, index) {
+                           
                             // Draw the text in black, with the specified font
                             ctx.fillStyle = 'rgb(0, 0, 0)';
                             var fontSize = 13;
                             var fontStyle = 'normal';
                             var fontFamily = 'Helvetica Neue, sans-serif';
                             ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+                            
                             // Just naively convert to string for now
                             var dataString = dataset.data[index].toString();
+                            
                             // Make sure alignment settings are correct
                             ctx.textAlign = 'center';
                             ctx.textBaseline = 'middle';
-                            var padding = -6;
+                            var padding = -5;
                             var position = element.tooltipPosition();
                             ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);
                         });
@@ -107,11 +149,15 @@
                 borderColor: window.chartColors.red,
                 data: [12,20,56]
             }, {
-                
-               
+                              
                 label: 'SP',
                 backgroundColor: color(window.chartColors.green).alpha(0.2).rgbString(),
                 borderColor: window.chartColors.green,
+                data: [15,16,44]
+            }, {
+                label: 'RP',
+                backgroundColor: color(window.chartColors.orange).alpha(0.2).rgbString(),
+                borderColor: window.chartColors.orange,
                 data: [15,16,44]
             }]
         };
@@ -124,20 +170,27 @@
                     var meta = chart.getDatasetMeta(i);
                     if (!meta.hidden) {
                         meta.data.forEach(function(element, index) {
+                            
                             // Draw the text in black, with the specified font
+                            //Cor da data label
                             ctx2.fillStyle = 'rgb(0, 0, 0)';
-                            var fontSize = 13;
+
+                            var fontSize = 16;
                             var fontStyle = 'normal';
-                            var fontFamily = 'Helvetica Neue, sans-serif';
+                            var fontFamily = 'Helvetica Neue';
                             ctx2.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+
                             // Just naively convert to string for now
                             var dataString = dataset.data[index].toString();
+
                             // Make sure alignment settings are correct
                             ctx2.textAlign = 'center';
                             ctx2.textBaseline = 'middle';
-                            var padding = -6;
+
+                            var padding = 5;
                             var position = element.tooltipPosition();
                             ctx2.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);
+
                         });
                     }
                 });
@@ -174,7 +227,7 @@
                     responsive: true,
                     title: {
                         display: true,
-                        text: 'Problema X QTD',
+                        text: 'Problema x QTD',
                         fontSize: 18,
                       },
                 legend: {
