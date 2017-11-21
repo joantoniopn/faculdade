@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="js/jquery.min.js"></script>
+<script> 
+$(function(){
+  $("#entrar").click(entrar);
+	if (localStorage.length > 0)
+	{
+        $("#login").val(localStorage.getItem("login"));
+        $("#senha").val(localStorage.getItem("senha"));
+        $('#checkSalvar').prop('checked', true);
+    }
+});
+function entrar(){
+    var login = $("#login").val();
+    var senha = $("#senha").val();
+    var check = $("#checkSalvar").is(':checked');
+    if(login == ""){
+        alert('Preencha o campo login!');
+        $("#login").focus();
+        return false;
+    }
+    if(senha == ""){
+        alert('Preencha o campo Senha!');
+        $("#senha").focus();
+        return false;
+    }
+    checado(check, login, senha);
+
+}
+function checado(check, login, senha){
+    if(check){
+        localStorage.setItem("login",login);
+        localStorage.setItem("senha",senha);
+        alert("Dados gravados");
+    }
+    else{
+      localStorage.clear();	
+    }
+}
+
+</script>
+ 
+</head>
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <p>Login: 
+    <input name="login" type="text" id="login" size="10" />
+  </p>
+  <p>Senha:
+    <input name="senha" type="password" id="senha" size="10" />
+  </p>
+    <p>
+        <input type="checkbox" name="salvar" value="Gravar" id="checkSalvar">Salvar login<br>
+    </p>
+  <p>
+    <input type="button" name="entrar"  id="entrar" value="Entrar"  />
+  </p>
+</form>
+
+</body>
+</html>
